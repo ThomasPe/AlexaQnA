@@ -92,7 +92,7 @@ namespace AlexaQnA.Controllers
             var speech = new SsmlOutputSpeech();
 
             // check the name to determine what you should do
-            if (intentRequest.Intent.Name.Equals("GetAllIntent"))
+            if (intentRequest.Intent.Name.Equals("CatchAllIntent"))
             {
                 var phrase = intentRequest.Intent.Slots["phrase"].Value;
                 string answer = string.Empty;
@@ -105,7 +105,8 @@ namespace AlexaQnA.Controllers
                 }
 
                 speech.Ssml = $"<speak>{answer}</speak>";
-                return ResponseBuilder.Tell(speech);
+                var response = ResponseBuilder.Tell(speech);
+                return response;
             }
             else
             {
